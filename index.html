@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>買い物アプリ</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>買い物管理アプリ</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="tabs">
-    <button class="tab-button active" data-store="ベルク">ベルク</button>
-    <button class="tab-button" data-store="スギ薬局">スギ薬局</button>
-    <button class="tab-button" data-store="パレッテ">パレッテ</button>
-    <button class="tab-button" data-store="業務スーパー">業スー</button>
+    <button class="tab active" data-store="berc">ベルク</button>
+    <button class="tab" data-store="sugi">スギ薬局</button>
+    <button class="tab" data-store="palette">パレッテ</button>
+    <button class="tab" data-store="gyomu">業務スーパー</button>
   </div>
 
-  <div id="content">
-    <!-- 動的に表示される -->
+  <div class="list-container">
+    <div class="section-title">購入予定</div>
+    <ul id="selected-list"></ul>
+
+    <div class="section-title">品物を選択</div>
+    <ul id="item-list"></ul>
+
+    <div class="buttons">
+      <button id="add-button">購入予定に追加</button>
+      <button id="reset-button">リセット</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
