@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>買い物リスト</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>買い物管理アプリ</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="tabs">
-    <div class="tab active" data-store="ベルク">ベルク</div>
-    <div class="tab" data-store="スギ薬局">スギ薬局</div>
-    <div class="tab" data-store="パレッテ">パレッテ</div>
-    <div class="tab" data-store="業スー">業スー</div>
+  <div class="tab-container">
+    <button class="tab active" data-store="ベルク">ベルク</button>
+    <button class="tab" data-store="スギ薬局">スギ薬局</button>
+    <button class="tab" data-store="パレッテ">パレッテ</button>
+    <button class="tab" data-store="業スー">業スー</button>
   </div>
 
-  <div class="list-section">
-    <h2>購入予定</h2>
-    <ul id="selectedItemsList" class="list"></ul>
-  </div>
+  <div id="content">
+    <div class="list-section">
+      <h2>購入予定</h2>
+      <ul id="planned-list" class="planned-list"></ul>
+    </div>
 
-  <div class="list-section">
-    <h2>品物一覧</h2>
-    <ul id="itemList" class="list"></ul>
-  </div>
+    <div class="list-section">
+      <h2>品物を選択</h2>
+      <ul id="main-list" class="main-list"></ul>
+    </div>
 
-  <div class="buttons">
-    <button id="addButton">購入予定に追加</button>
-    <button id="resetButton">リセット</button>
+    <div class="button-area">
+      <button id="add-button" class="action-button">購入予定に追加</button>
+      <button id="reset-button" class="action-button">リセット</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
