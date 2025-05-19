@@ -42,9 +42,45 @@ body {
   padding: 12px;
   margin-bottom: 10px;
   border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.item-list input[type="checkbox"] {
+.item-list li:hover {
+  background-color: #2a2a2a;
+  transform: scale(1.02);
+}
+
+.check-circle {
+  width: 20px;
+  height: 20px;
   margin-right: 12px;
-  transform: scale(1.4);
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.state-0 {
+  background-color: transparent;
+  border-color: #888;
+}
+
+.state-1 {
+  background-color: #ffd700;
+  border-color: #ffd700;
+}
+
+.state-2 {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
