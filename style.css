@@ -1,97 +1,84 @@
 body {
   margin: 0;
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Arial', sans-serif;
   background-color: #121212;
-  color: #fff;
+  color: white;
 }
 
-.tab-container {
+.tabs {
   display: flex;
   justify-content: space-between;
   background-color: #1e1e1e;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  border-bottom: 1px solid #333;
 }
 
 .tab {
   flex: 1;
   padding: 10px 0;
-  text-align: center;
-  background-color: #1e1e1e;
+  background: none;
+  color: white;
   border: none;
-  color: #ccc;
   font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .tab.active {
   background-color: #333;
-  color: #00bcd4;
   font-weight: bold;
 }
 
 h2 {
+  margin: 16px 0 8px 10px;
   font-size: 16px;
-  margin: 20px 0 10px;
   border-bottom: 1px solid #444;
   padding-bottom: 4px;
 }
 
-.list-section {
-  padding: 0 10px 20px;
-}
-
-.planned-list {
-  margin-bottom: 20px;
-  padding: 10px;
-  border-bottom: 2px dashed #666;
-  background-color: #1b1b1b;
-  border-radius: 5px;
-}
-
-li {
+.item-list {
   list-style: none;
-  padding: 12px 15px;
-  margin: 5px 0;
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  transition: background-color 0.2s ease;
+  padding: 0;
+  margin: 0 10px;
+}
+
+.item {
+  padding: 12px;
+  margin-bottom: 6px;
+  background-color: #1f1f1f;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.1s;
   cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-li.selected {
-  background-color: #004d40;
+.item.selecting {
+  background-color: #444;
 }
 
-li.checked {
-  text-decoration: line-through;
-  color: #888;
+.item.bought {
+  background-color: #2e8b57;
+  color: white;
 }
 
-.button-area {
+.item:active {
+  transform: scale(0.98);
+}
+
+.buttons {
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  margin: 20px 10px;
 }
 
-.action-button {
-  flex: 1;
-  margin: 0 5px;
-  padding: 12px;
-  font-size: 14px;
-  color: #fff;
+.action-btn {
+  padding: 10px 20px;
   background-color: #333;
+  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
 }
 
-.action-button:active {
-  background-color: #00bcd4;
-  color: black;
+.action-btn:active {
+  background-color: #555;
 }
