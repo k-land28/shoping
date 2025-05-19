@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>お買い物リスト</title>
+  <title>買い物アプリ</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="tab-container">
-    <button class="tab active" data-store="ベルク">ベルク</button>
-    <button class="tab" data-store="スギ薬局">スギ薬局</button>
-    <button class="tab" data-store="パレッテ">パレッテ</button>
-    <button class="tab" data-store="業務スーパー">業スー</button>
+  <div class="tabs">
+    <button class="tab-button active" data-store="ベルク">ベルク</button>
+    <button class="tab-button" data-store="スギ薬局">スギ薬局</button>
+    <button class="tab-button" data-store="パレッテ">パレッテ</button>
+    <button class="tab-button" data-store="業務スーパー">業スー</button>
   </div>
 
-  <ul id="item-list" class="item-list"></ul>
+  <div id="content">
+    <!-- 動的に表示される -->
+  </div>
 
   <script src="script.js"></script>
 </body>
