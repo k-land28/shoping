@@ -1,64 +1,53 @@
-const stores = {
-  storeA: ["牛乳", "パン", "卵"],
-  storeB: ["トマト", "レタス", "にんじん"],
-  storeC: ["お米", "しょうゆ", "みそ"],
-  storeD: ["ティッシュ", "トイレットペーパー", "洗剤"]
+const storeItems = {
+  "ベルク": [
+    "ねぎ", "きゅうり", "キャベツ", "もやし", "ドレッシング", "サラダチキン",
+    "牛肉", "豚肉", "鶏肉", "ひき肉", "味付け肉", "ごま油", "マヨネーズ",
+    "韓国のり", "シーチキン", "麻婆豆腐", "カニカマ", "たまご", "菓子パン", 
+    "食パン", "千切りキャベツ", "豆腐", "冷凍うどん", "アイス"
+  ],
+  "スギ薬局": [
+    "マスク", "綿棒", "絆創膏", "目薬", "ハイチオールC", "鼻炎薬",
+    "キュキュットウルトラ", "JOY", "カビキラー", "マジックリン", "消臭剤",
+    "ビニール袋", "三角ネット", "サランラップ", "ナプキン", "トイレシート",
+    "歯磨きガム", "歯ブラシ", "歯磨き粉", "デンタルリンス", "マウピー洗浄剤",
+    "ボディーソープ", "バブ", "消臭ビーズ", "ファブリーズ", "柔軟剤", 
+    "洗濯洗剤", "ドラム洗浄剤", "ティッシュ", "トイペ", "犬用トイペ", 
+    "ファンタ", "菓子パン", "食パン", "シャンプー", "コンディショナー", 
+    "白髪染め", "ハードスプレー"
+  ],
+  "パレッテ": [
+    "漬け物", "お菓子類", "プルコギ丼のタレ", "スープパスタ", "辛麺", 
+    "おにぎりのもと", "ファンタ", "パン", "キャベせん", "アイス", "チャーハン"
+  ],
+  "業務スーパー": [
+    "コーヒー", "豆乳", "マカロニサラダ", "らっきょ", "ビン鮭", "豆板醤", "のり",
+    "ミックスベジタブル", "ほうれん草", "パプリカ", "コーン", "唐揚げ", "辛麺", "どら焼き"
+  ]
 };
 
-let state = {}; // 商品ごとのチェック状態を保存
-
-const itemList = document.getElementById("item-list");
 const tabs = document.querySelectorAll(".tab");
+const itemList = document.getElementById("item-list");
 
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
-    document.querySelector(".tab.active")?.classList.remove("active");
+    document.querySelector(".tab.active").classList.remove("active");
     tab.classList.add("active");
-    showItems(tab.dataset.store);
+    const store = tab.getAttribute("data-store");
+    renderItems(store);
   });
 });
 
-function showItems(storeKey) {
+function renderItems(store) {
   itemList.innerHTML = "";
-  const items = stores[storeKey];
-  if (!state[storeKey]) state[storeKey] = Array(items.length).fill("none");
-
-  items.forEach((item, index) => {
-    const itemDiv = document.createElement("div");
-    itemDiv.className = "item";
-
-    const checkbox = document.createElement("div");
-    checkbox.className = "checkbox";
-    updateCheckboxState(checkbox, state[storeKey][index]);
-
-    checkbox.addEventListener("click", () => {
-      const current = state[storeKey][index];
-      const next = current === "none" ? "active" : current === "active" ? "checked" : "none";
-      state[storeKey][index] = next;
-      updateCheckboxState(checkbox, next);
-    });
-
-    const text = document.createElement("div");
-    text.className = "item-text";
-    text.textContent = item;
-
-    itemDiv.appendChild(checkbox);
-    itemDiv.appendChild(text);
-    itemList.appendChild(itemDiv);
+  storeItems[store].forEach(item => {
+    const li = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    li.appendChild(checkbox);
+    li.appendChild(document.createTextNode(item));
+    itemList.appendChild(li);
   });
 }
 
-function updateCheckboxState(elem, state) {
-  elem.className = "checkbox"; // reset
-  if (state === "active") {
-    elem.classList.add("active");
-  } else if (state === "checked") {
-    elem.classList.add("checked");
-    elem.textContent = "✔";
-  } else {
-    elem.textContent = "";
-  }
-}
-
-// 初期表示
-showItems("storeA");
+// 最初にベルクを表示
+renderItems("ベルク");
