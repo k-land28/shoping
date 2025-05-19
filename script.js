@@ -77,5 +77,7 @@ function loadState() {
   }
 }
 
-loadState();
-renderItems();
+document.addEventListener("DOMContentLoaded", () => {
+  loadState();
+  renderItems();
+});
