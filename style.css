@@ -7,6 +7,7 @@ body {
 
 #tabs {
   display: flex;
+  width: 100%;
   background-color: #222;
   border-bottom: 2px solid #444;
 }
@@ -20,12 +21,15 @@ body {
   font-size: 16px;
   cursor: pointer;
   transition: background 0.3s, color 0.3s, transform 0.3s;
+  text-align: center;
 }
 
 .tab.active {
   background-color: #333;
   color: #fff;
-  transform: scale(1.1);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  z-index: 1;
 }
 
 #content {
@@ -69,7 +73,8 @@ body {
 }
 
 .item.selected {
-  background-color: #444;
+  background-color: #0057a0; /* 選択中の色を明確に */
+  color: #fff;
 }
 
 .active-item.done {
