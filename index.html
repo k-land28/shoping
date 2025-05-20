@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>お買い物アプリ</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="tabs">
@@ -14,16 +14,19 @@
     <button class="tab" data-store="業スー">業スー</button>
   </div>
 
-  <div id="content">
-    <h2>購入予定</h2>
-    <ul id="selected-items" class="item-list"></ul>
+  <div class="container">
+    <div class="section" id="planned-section">
+      <h2>購入予定</h2>
+      <ul id="planned-list"></ul>
+      <button id="reset-button">リセット</button>
+    </div>
 
-    <h2>品物一覧</h2>
-    <ul id="item-list" class="item-list"></ul>
+    <hr />
 
-    <div class="buttons">
-      <button id="confirm-btn" class="action-btn">購入予定に追加</button>
-      <button id="reset-btn" class="action-btn">リセット</button>
+    <div class="section" id="item-section">
+      <h2>品物一覧</h2>
+      <ul id="item-list"></ul>
+      <button id="confirm-button">購入予定に追加</button>
     </div>
   </div>
 
