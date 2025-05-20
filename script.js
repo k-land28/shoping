@@ -29,89 +29,104 @@ let selecting = new Set();
 let planned = {};
 let bought = {};
 
-function saveData() {
-  localStorage.setItem("planned", JSON.stringify(planned));
-  localStorage.setItem("bought", JSON.stringify(bought));
+function saveState() {
+  localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
 }
 
-function loadData() {
-  planned = JSON.parse(localStorage.getItem("planned")) || {};
-  bought = JSON.parse(localStorage.getItem("bought")) || {};
+function loadState() {
+  const saved = localStorage.getItem('shoppingList');
+  if (saved) {
+    shoppingList = JSON.parse(saved);
+  }
 }
 
-function renderItems() {
-  const list = document.getElementById("item-list");
-  list.innerHTML = "";
+function updateTabs() {
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.store === currentStore);
+  });
+}
 
-  (itemsData[currentStore] || []).forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    li.className = selecting.has(item) ? "selecting" : "";
-    li.addEventListener("click", () => {
-      if (selecting.has(item)) {
-        selecting.delete(item);
+function renderItemList() {
+  const itemList = document.getElementById('item-list');
+  itemList.innerHTML = '';
+  selectedItems.clear();
+
+  data[currentStore].forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.textContent = item;
+
+    div.addEventListener('click', () => {
+      div.classList.toggle('selected');
+      if (selectedItems.has(item)) {
+        selectedItems.delete(item);
       } else {
-        selecting.add(item);
+        selectedItems.add(item);
       }
-      renderItems();
     });
-    list.appendChild(li);
+
+    itemList.appendChild(div);
   });
 }
 
-function renderPlanned() {
-  const list = document.getElementById("planned-list");
-  list.innerHTML = "";
+function renderActiveList() {
+  const activeList = document.getElementById('active-list');
+  activeList.innerHTML = '';
 
-  (planned[currentStore] || []).forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    li.className = (bought[currentStore] || []).includes(item) ? "bought" : "";
-    li.addEventListener("click", () => {
-      if (!bought[currentStore]) bought[currentStore] = [];
-      if (bought[currentStore].includes(item)) {
-        bought[currentStore] = bought[currentStore].filter(i => i !== item);
-      } else {
-        bought[currentStore].push(item);
-      }
-      saveData();
-      renderPlanned();
+  const items = shoppingList[currentStore] || [];
+
+  items.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.className = 'active-item';
+    div.textContent = item.name;
+
+    if (item.done) div.classList.add('done');
+
+    div.addEventListener('click', () => {
+      item.done = !item.done;
+      renderActiveList();
+      saveState();
     });
-    list.appendChild(li);
+
+    activeList.appendChild(div);
   });
 }
 
-document.querySelectorAll(".tab").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".tab").forEach(btn => btn.classList.remove("active"));
-    button.classList.add("active");
-    currentStore = button.dataset.store;
-    selecting.clear();
-    renderItems();
-    renderPlanned();
+function initTabs() {
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      currentStore = tab.dataset.store;
+      updateTabs();
+      renderItemList();
+      renderActiveList();
+    });
   });
-});
+}
 
-document.getElementById("confirm-button").addEventListener("click", () => {
-  if (!planned[currentStore]) planned[currentStore] = [];
-  selecting.forEach(item => {
-    if (!planned[currentStore].includes(item)) {
-      planned[currentStore].push(item);
-    }
+function setupButtons() {
+  document.getElementById('add-button').addEventListener('click', () => {
+    if (!shoppingList[currentStore]) shoppingList[currentStore] = [];
+
+    selectedItems.forEach(item => {
+      shoppingList[currentStore].push({ name: item, done: false });
+    });
+
+    saveState();
+    renderActiveList();
+    renderItemList();
   });
-  selecting.clear();
-  saveData();
-  renderItems();
-  renderPlanned();
-});
 
-document.getElementById("reset-button").addEventListener("click", () => {
-  delete planned[currentStore];
-  delete bought[currentStore];
-  saveData();
-  renderPlanned();
-});
+  document.getElementById('reset-button').addEventListener('click', () => {
+    shoppingList[currentStore] = [];
+    saveState();
+    renderActiveList();
+  });
+}
 
-loadData();
-renderItems();
-renderPlanned();
+// 初期化
+loadState();
+initTabs();
+updateTabs();
+renderItemList();
+renderActiveList();
+setupButtons();
