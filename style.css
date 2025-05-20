@@ -1,84 +1,87 @@
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
   background-color: #121212;
-  color: white;
+  color: #ffffff;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .tabs {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: #1e1e1e;
-  border-bottom: 1px solid #333;
 }
 
 .tab {
   flex: 1;
-  padding: 10px 0;
-  background: none;
-  color: white;
+  padding: 12px 0;
   border: none;
-  font-size: 14px;
+  background: none;
+  color: #bbb;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .tab.active {
   background-color: #333;
-  font-weight: bold;
+  color: #fff;
+}
+
+.container {
+  padding: 10px;
+}
+
+.section {
+  margin-bottom: 20px;
 }
 
 h2 {
-  margin: 16px 0 8px 10px;
-  font-size: 16px;
+  font-size: 18px;
   border-bottom: 1px solid #444;
-  padding-bottom: 4px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.item-list {
+ul {
   list-style: none;
   padding: 0;
-  margin: 0 10px;
+  margin: 0;
 }
 
-.item {
-  padding: 12px;
-  margin-bottom: 6px;
-  background-color: #1f1f1f;
-  border-radius: 6px;
-  transition: background-color 0.3s, transform 0.1s;
-  cursor: pointer;
+li {
+  background-color: #1e1e1e;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
 
-.item.selecting {
+li.selecting {
   background-color: #444;
 }
 
-.item.bought {
-  background-color: #2e8b57;
+li.bought {
+  background-color: #2e7d32;
   color: white;
 }
 
-.item:active {
-  transform: scale(0.98);
+li:hover {
+  opacity: 0.9;
 }
 
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px 10px;
-}
-
-.action-btn {
-  padding: 10px 20px;
+button {
+  width: 100%;
+  padding: 10px;
   background-color: #333;
   color: white;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background 0.2s;
 }
 
-.action-btn:active {
+button:active {
   background-color: #555;
 }
